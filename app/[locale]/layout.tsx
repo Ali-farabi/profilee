@@ -25,6 +25,28 @@ export async function generateMetadata({
   return {
     title: `${t.name} | ${t.role}`,
     description: t.tagline,
+    openGraph: {
+      title: `${t.name} | ${t.role}`,
+      description: t.tagline,
+      url: `/${locale}`,
+      siteName: t.name,
+      images: [
+        {
+          url: "/opengraph.png",
+          width: 1200,
+          height: 630,
+          alt: `${t.name} - ${t.role}`,
+        },
+      ],
+      locale: locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${t.name} | ${t.role}`,
+      description: t.tagline,
+      images: ["/opengraph.png"],
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: {
