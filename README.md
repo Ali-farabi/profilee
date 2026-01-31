@@ -1,42 +1,50 @@
 # Dzhalil Kalimov | Frontend Developer
 
-Personal portfolio site built with Next.js 16, React 19, TypeScript and Tailwind CSS 4. Liquid glass / glassmorphism design, dark/light themes, RU/EN localization.
+Personal portfolio site built with Next.js 16, React 19, TypeScript and Tailwind CSS 4. Glassmorphism design, dark/light themes, RU/EN localization, SEO optimized.
 
 ## Stack
 
-- **Framework:** Next.js 16 (App Router)
+- **Framework:** Next.js 16 (App Router, Turbopack)
 - **UI:** React 19, TypeScript, Tailwind CSS 4
-- **Features:** i18n (RU/EN), theme toggle (light/dark/system), responsive layout, scroll animations
+- **Features:** i18n (RU/EN), theme toggle with View Transitions API, responsive layout, scroll animations, JSON-LD schema
 
 ## Project structure
 
 ```
 ├── app/
-│   ├── globals.css      # Global styles, theme variables
-│   ├── layout.tsx       # Root layout, providers, fonts
-│   ├── page.tsx         # Main page composition
-│   └── theme-init.tsx   # Inline script for theme flash prevention
-├── components/
-│   ├── ui/
-│   │   ├── AnimateOnScroll.tsx  # IntersectionObserver-based reveal
-│   │   └── GlassCard.tsx       # Glassmorphism card
-│   ├── Header.tsx
-│   ├── Hero.tsx
-│   ├── About.tsx
-│   ├── Skills.tsx
-│   ├── Experience.tsx
-│   ├── Projects.tsx
-│   ├── Achievements.tsx
-│   ├── Contact.tsx
-│   └── Footer.tsx
+│   ├── [locale]/
+│   │   ├── layout.tsx       # Locale layout, metadata, providers
+│   │   └── page.tsx         # Main page composition
+│   ├── globals.css          # Global styles, theme variables
+│   ├── theme-init.tsx       # Inline script for theme flash prevention
+│   ├── robots.ts            # SEO: robots.txt generation
+│   ├── sitemap.ts           # SEO: sitemap.xml generation
+│   └── manifest.ts          # PWA manifest
 ├── content/
-│   └── i18n.ts          # Localized content (RU/EN)
-├── lib/
-│   ├── constants.ts     # Links, skills, projects
-│   ├── theme.ts         # Theme context (light/dark/system)
-│   └── i18n.tsx         # i18n context
+│   └── i18n.ts              # Localized content (RU/EN)
+├── layout/
+│   ├── header/              # Navigation, theme/locale switcher
+│   └── footer/              # Footer component
+├── sections/
+│   ├── hero/                # Hero section
+│   ├── about/               # About section
+│   ├── skills/              # Skills section
+│   ├── experience/          # Experience section
+│   ├── projects/            # Projects section
+│   ├── achievements/        # Achievements section
+│   └── contact/             # Contact section
+├── providers/
+│   ├── theme/               # Theme context (light/dark/system)
+│   └── i18n/                # i18n context
+├── shared/
+│   ├── components/          # Reusable UI (GlassCard, AnimateOnScroll)
+│   ├── constants/           # Links, skills, projects data
+│   ├── helpers/             # Utilities (JSON-LD generation)
+│   ├── icons/               # SVG icon components
+│   └── types/               # Shared TypeScript types
 └── public/
-    └── cv/              # PDF resumes (RU, EN)
+    ├── cv/                  # PDF resumes (RU, EN)
+    └── opengraph.png        # OG image
 ```
 
 ## Run
@@ -57,4 +65,4 @@ npm start
 
 ## Author
 
-**Dzhalil Kalimov** — [GitHub](https://github.com/Fujura) · [LinkedIn](https://www.linkedin.com/in/dzhalil-kalimov-41b5bb29b/)
+**Dzhalil Kalimov** — [GitHub](https://github.com/Fujura) · [LinkedIn](https://www.linkedin.com/in/dzhalil-kalimov-41b5bb29b/) · [Telegram](https://t.me/fujura)
