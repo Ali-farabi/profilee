@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/providers/theme"
 import { I18nProvider } from "@/providers/i18n"
 import { ThemeInitScript } from "@/app/theme-init"
 import { locales, content, type Locale } from "@/content"
+import { generateProfilePageSchema } from "@/shared/helpers"
 import { notFound } from "next/navigation"
 
 const dmSans = DM_Sans({
@@ -22,37 +23,74 @@ export async function generateMetadata({
   const { locale } = await params
   const t = content[locale as Locale]
 
+  const baseUrl = "https://kalimov.com"
+
   return {
-    title: `${t.name} | ${t.role}`,
+    metadataBase: new URL(baseUrl),
+    title: {
+      default: `${t.name} | ${t.role}`,
+      template: `%s | ${t.name}`,
+    },
     description: t.tagline,
+    keywords: [
+      "Frontend Developer",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Web3",
+      "Blockchain",
+      "Джалиль Калимов",
+      "Dzhalil Kalimov",
+      "Portfolio",
+      "Software Engineer",
+    ],
+    authors: [{ name: t.name }],
+    creator: t.name,
     openGraph: {
       title: `${t.name} | ${t.role}`,
       description: t.tagline,
-      url: `/${locale}`,
+      url: `${baseUrl}/${locale}`,
       siteName: t.name,
       images: [
         {
-          url: "/opengraph.png",
+          url: `${baseUrl}/opengraph.png`,
           width: 1200,
           height: 630,
           alt: `${t.name} - ${t.role}`,
         },
       ],
-      locale: locale,
+      locale: locale === "ru" ? "ru_RU" : "en_US",
       type: "website",
     },
     twitter: {
       card: "summary_large_image",
       title: `${t.name} | ${t.role}`,
       description: t.tagline,
-      images: ["/opengraph.png"],
+      images: [`${baseUrl}/opengraph.png`],
+      creator: "@fujura",
     },
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `${baseUrl}/${locale}`,
       languages: {
-        ru: "/ru",
-        en: "/en",
+        ru: `${baseUrl}/ru`,
+        en: `${baseUrl}/en`,
+        "x-default": `${baseUrl}/ru`,
       },
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+    verification: {
+      google: "",
+      yandex: "",
     },
   }
 }
@@ -77,14 +115,20 @@ export default async function LocaleLayout({
   const cookieStore = await cookies()
   const themeCookie = cookieStore.get("fujura-theme")?.value
   const themeClass = themeCookie === "dark" || themeCookie === "light" ? themeCookie : ""
+  const jsonLd = generateProfilePageSchema(locale as Locale)
 
   return (
     <html lang={locale} className={themeClass} suppressHydrationWarning>
       <head>
         <ThemeInitScript />
-        <link rel="alternate" hrefLang="ru" href="/ru" />
-        <link rel="alternate" hrefLang="en" href="/en" />
-        <link rel="alternate" hrefLang="x-default" href="/ru" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+        <link rel="alternate" hrefLang="ru" href="https://kalimov.com/ru" />
+        <link rel="alternate" hrefLang="en" href="https://kalimov.com/en" />
+        <link rel="alternate" hrefLang="x-default" href="https://kalimov.com/ru" />
       </head>
       <body className={`${dmSans.variable} font-sans antialiased`}>
         <ThemeProvider>
