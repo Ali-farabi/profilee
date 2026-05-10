@@ -69,18 +69,19 @@ export const PROJECTS = [
     demo: null,
   },
   {
-    name: "EnterpriseHR (корпоративный HR портал)",
-    description: "Corporate HR portal for managing employee data, attendance, and performance reviews.",
-    stack: ["React", "TypeScript", "Tailwind CSS", "MongoDB", "Node.js" , "Next.js"],
-    href: "https://enterprisehr.ru/enterpriseHR/",
-    demo: null,
-  },
-  {
     name: "Медицинский сайт CRM",
     description: "Personal portfolio site with modern design and smooth animations.",
     stack: ["Next.js", "React", "TypeScript", "Tailwind", "Framer Motion"],
     href: "https://medical-project-orpin.vercel.app/home",
     demo: null,
   },
+  {
+    name: "EnterpriseHR (корпоративный HR портал)",
+    description: "Corporate HR portal for managing employee data, attendance, and performance reviews.",
+    stack: ["React", "TypeScript", "Tailwind CSS", "MongoDB", "Node.js" , "Next.js"],
+    href: "https://enterprisehr.ru/enterpriseHR/",
+    demo: null,
+  },
+  
   
 ]
