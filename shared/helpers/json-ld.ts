@@ -5,7 +5,7 @@ import { LINKS } from "@/shared/constants"
 export function generateProfilePageSchema(locale: Locale) {
   const t = content[locale] ?? content[defaultLocale]
   const baseUrl = "https://kalimov.com"
-  const stakeme = t?.experience?.stakeme
+  const elnurCo = t?.experience?.elnurCo
 
   return {
     "@context": "https://schema.org",
@@ -47,11 +47,11 @@ export function generateProfilePageSchema(locale: Locale) {
           ],
         },
       ],
-      worksFor: stakeme
+      worksFor: elnurCo
         ? {
             "@type": "Organization",
-            name: stakeme.company,
-            description: stakeme.subtitle,
+            name: elnurCo.company,
+            description: elnurCo.subtitle,
           }
         : undefined,
     },

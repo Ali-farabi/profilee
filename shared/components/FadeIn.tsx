@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 interface FadeInProps {
   children: React.ReactNode
   delay?: number
-  as?: keyof JSX.IntrinsicElements
+  as?: React.ElementType
 }
 
 export function FadeIn({ children, delay = 0, as = "div" }: FadeInProps) {
