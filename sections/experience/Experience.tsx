@@ -5,7 +5,7 @@ import { AnimateOnScroll, GlassCard } from "@/shared/components"
 
 export function Experience() {
   const { t } = useI18n()
-  const jobs = [t.experience?.stakeme, t.experience?.dragau, t.experience?.apc].filter(
+  const jobs = [t.experience?.elnurCo, t.experience?.personalProjects].filter(
     (job): job is NonNullable<typeof job> => Boolean(job)
   )
 
