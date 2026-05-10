@@ -1,57 +1,63 @@
 "use client"
 
 import { useI18n } from "@/providers/i18n"
-import { AnimateOnScroll, GlassCard } from "@/shared/components"
-import { LINKS, CV_PATHS } from "@/shared/constants"
-import { MailIcon, GithubIcon, LinkedinIcon, TelegramIcon } from "@/shared/icons"
-
-const contactLinks = [
-  { href: LINKS.email, icon: MailIcon, label: "fujuroa@gmail.com" },
-  { href: LINKS.github, icon: GithubIcon, label: "GitHub" },
-  { href: LINKS.linkedin, icon: LinkedinIcon, label: "LinkedIn" },
-  { href: LINKS.telegram, icon: TelegramIcon, label: "Telegram" },
-]
+import { FadeIn } from "@/shared/components"
+import { LINKS } from "@/shared/constants"
+import { MailIcon } from "@/shared/icons"
 
 export function Contact() {
-  const { t, locale } = useI18n()
+  const { t } = useI18n()
 
   return (
-    <AnimateOnScroll>
-      <section id="contact" className="py-20 px-4 sm:px-6">
-        <div className="mx-auto max-w-5xl">
-          <GlassCard className="p-8 sm:p-10 text-center">
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-white mb-4">
-              {t.contact.title}
-            </h2>
-            <p className="text-zinc-600 dark:text-zinc-400 mb-8 max-w-xl mx-auto">
-              {t.contact.cta}
-            </p>
-            <div className="flex flex-wrap justify-center gap-6 mb-8">
-              {contactLinks.map(({ href, icon: Icon, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target={href.startsWith("mailto") ? undefined : "_blank"}
-                  rel={href.startsWith("mailto") ? undefined : "noopener noreferrer"}
-                  className="inline-flex items-center gap-2 px-4 py-3 rounded-xl border
-                    border-zinc-300 text-zinc-800 dark:border-zinc-700 dark:text-zinc-300
-                    hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors"
-                >
-                  <Icon />
-                  {label}
-                </a>
-              ))}
-            </div>
+    <section className="bg-zinc-900 dark:bg-zinc-100 rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 z-10 px-6 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32">
+      <div className="max-w-4xl mx-auto text-center">
+        <FadeIn>
+          <p className="text-zinc-500 dark:text-zinc-600 uppercase tracking-[0.3em] text-sm mb-6">
+            GET IN TOUCH
+          </p>
+          <h2 className="font-black uppercase leading-none tracking-tight text-white dark:text-zinc-900 text-[clamp(3rem,12vw,120px)] mb-12">
+            {t.contact.title}
+          </h2>
+          <p className="text-zinc-400 dark:text-zinc-600 text-xl md:text-2xl mb-16 max-w-2xl mx-auto leading-relaxed">
+            {t.contact.cta}
+          </p>
+
+          <a
+            href={`mailto:${LINKS.email}`}
+            className="inline-flex items-center gap-4 px-10 py-5 rounded-full bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white font-medium text-lg transition-all hover:scale-105 hover:shadow-2xl"
+          >
+            <MailIcon />
+            {LINKS.email}
+          </a>
+
+          <div className="flex justify-center gap-12 mt-20">
             <a
-              href={CV_PATHS[locale]}
-              download
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-medium hover:opacity-90 transition-opacity"
+              href={LINKS.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-500 dark:text-zinc-600 hover:text-white dark:hover:text-zinc-900 transition-colors text-sm uppercase tracking-wider font-medium"
             >
-              {t.buttons.resume}
+              GitHub
             </a>
-          </GlassCard>
-        </div>
-      </section>
-    </AnimateOnScroll>
+            <a
+              href={LINKS.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-500 dark:text-zinc-600 hover:text-white dark:hover:text-zinc-900 transition-colors text-sm uppercase tracking-wider font-medium"
+            >
+              LinkedIn
+            </a>
+            <a
+              href={LINKS.telegram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-zinc-500 dark:text-zinc-600 hover:text-white dark:hover:text-zinc-900 transition-colors text-sm uppercase tracking-wider font-medium"
+            >
+              Telegram
+            </a>
+          </div>
+        </FadeIn>
+      </div>
+    </section>
   )
 }

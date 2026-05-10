@@ -3,16 +3,16 @@
 @custom-variant dark (&&:where(.dark, .dark *));
 
 :root {
-	--background: #f4f4f5;
-	--foreground: #18181b;
+	--background: #FFFFFF;
+	--foreground: #0C0C0C;
 	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 	--ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
 	color-scheme: light;
 }
 
 .dark {
-	--background: #09090b;
-	--foreground: #fafafa;
+	--background: #0C0C0C;
+	--foreground: #FFFFFF;
 	color-scheme: dark;
 }
 
@@ -22,6 +22,12 @@
 	--font-sans: var(--font-dm-sans), system-ui, sans-serif;
 }
 
+* {
+	transition-property: background-color, border-color, color, fill, stroke;
+	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+	transition-duration: 300ms;
+}
+
 html {
 	scroll-behavior: smooth;
 }
@@ -29,6 +35,10 @@ html {
 body {
 	background: var(--background);
 	color: var(--foreground);
+}
+
+.theme-transitioning * {
+	transition: none !important;
 }
 
 .theme-transitioning header {

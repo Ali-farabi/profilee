@@ -5,7 +5,9 @@ import { AnimateOnScroll, GlassCard } from "@/shared/components"
 
 export function Experience() {
   const { t } = useI18n()
-  const jobs = [t.experience.stakeme, t.experience.dragau, t.experience.apc]
+  const jobs = [t.experience?.stakeme, t.experience?.dragau, t.experience?.apc].filter(
+    (job): job is NonNullable<typeof job> => Boolean(job)
+  )
 
   return (
     <AnimateOnScroll>
@@ -34,7 +36,7 @@ export function Experience() {
                   {job.role} · {job.duration}
                 </p>
                 <ul className="space-y-2">
-                  {job.points.map((point) => (
+                  {(job.points ?? []).map((point) => (
                     <li
                       key={point}
                       className="flex gap-2 text-zinc-600 dark:text-zinc-400 text-sm"

@@ -1,56 +1,52 @@
 "use client"
 
 import { useI18n } from "@/providers/i18n"
-import { LINKS, CV_PATHS } from "@/shared/constants"
-import { DownloadIcon, GithubIcon, LinkedinIcon } from "@/shared/icons"
+import { LINKS } from "@/shared/constants"
+import { GithubIcon, LinkedinIcon, TelegramIcon } from "@/shared/icons"
 
 export function Hero() {
-  const { t, locale } = useI18n()
-  const cvPath = CV_PATHS[locale]
+  const { t } = useI18n()
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-center px-4 sm:px-6 pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-transparent to-violet-50/30 dark:from-blue-950/20 dark:via-transparent dark:to-violet-950/10" />
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-400/10 dark:bg-blue-500/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-400/10 dark:bg-violet-500/5 rounded-full blur-3xl" />
-
-      <div className="relative mx-auto max-w-3xl animate-hero-fade-in">
-        <p className="text-sm font-medium text-blue-600 dark:text-blue-400 mb-2">
+    <section className="min-h-screen bg-zinc-900 dark:bg-zinc-100 flex items-center justify-center px-6 py-20">
+      <div className="max-w-7xl w-full">
+        <p className="text-zinc-400 dark:text-zinc-600 uppercase tracking-[0.3em] text-sm mb-6">
           {t.role}
         </p>
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-zinc-900 dark:text-white tracking-tight mb-6">
+        <h1 className="font-black uppercase leading-none tracking-tight text-white dark:text-zinc-900 text-[clamp(3.5rem,12vw,140px)] mb-8">
           {t.name}
         </h1>
-        <p className="text-lg sm:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed mb-10 max-w-2xl">
+        <p className="text-zinc-400 dark:text-zinc-600 text-xl md:text-2xl max-w-2xl mb-16 leading-relaxed">
           {t.tagline}
         </p>
 
-        <div className="flex flex-wrap gap-4">
-          <a
-            href={cvPath}
-            download
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 font-medium shadow-lg transition-all duration-300 hover:scale-[1.02] active:scale-[0.98]"
-          >
-            <DownloadIcon />
-            {t.buttons.resume}
-          </a>
+        <div className="flex items-center gap-6">
           <a
             href={LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98]"
+            className="w-14 h-14 rounded-full bg-white/10 dark:bg-zinc-800/10 hover:bg-white/20 dark:hover:bg-zinc-800/20 flex items-center justify-center text-white dark:text-zinc-900 transition-all hover:scale-110"
+            aria-label="GitHub"
           >
             <GithubIcon />
-            {t.buttons.github}
           </a>
           <a
             href={LINKS.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-zinc-300 dark:border-zinc-600 text-zinc-700 dark:text-zinc-300 transition-all duration-300 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:scale-[1.02] active:scale-[0.98]"
+            className="w-14 h-14 rounded-full bg-white/10 dark:bg-zinc-800/10 hover:bg-white/20 dark:hover:bg-zinc-800/20 flex items-center justify-center text-white dark:text-zinc-900 transition-all hover:scale-110"
+            aria-label="LinkedIn"
           >
             <LinkedinIcon />
-            {t.buttons.linkedin}
+          </a>
+          <a
+            href={LINKS.telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-14 h-14 rounded-full bg-white/10 dark:bg-zinc-800/10 hover:bg-white/20 dark:hover:bg-zinc-800/20 flex items-center justify-center text-white dark:text-zinc-900 transition-all hover:scale-110"
+            aria-label="Telegram"
+          >
+            <TelegramIcon />
           </a>
         </div>
       </div>

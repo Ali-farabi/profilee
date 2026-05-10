@@ -1,10 +1,11 @@
 import type { Locale } from "@/shared/types"
-import { content } from "@/content"
+import { content, defaultLocale } from "@/content"
 import { LINKS } from "@/shared/constants"
 
 export function generateProfilePageSchema(locale: Locale) {
-  const t = content[locale]
+  const t = content[locale] ?? content[defaultLocale]
   const baseUrl = "https://kalimov.com"
+  const stakeme = t?.experience?.stakeme
 
   return {
     "@context": "https://schema.org",
@@ -46,11 +47,13 @@ export function generateProfilePageSchema(locale: Locale) {
           ],
         },
       ],
-      worksFor: {
-        "@type": "Organization",
-        name: t.experience.stakeme.company,
-        description: t.experience.stakeme.subtitle,
-      },
+      worksFor: stakeme
+        ? {
+            "@type": "Organization",
+            name: stakeme.company,
+            description: stakeme.subtitle,
+          }
+        : undefined,
     },
   }
 }

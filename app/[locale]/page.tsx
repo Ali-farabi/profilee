@@ -1,5 +1,5 @@
 import { Header, Footer } from "@/layout"
-import { Hero, About, Skills, Experience, Projects, Achievements, Contact } from "@/sections"
+import { Hero, Projects, Contact } from "@/sections"
 
 export default function Home() {
   return (
@@ -7,11 +7,7 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
-        <About />
-        <Skills />
-        <Experience />
         <Projects />
-        <Achievements />
         <Contact />
         <Footer />
       </main>

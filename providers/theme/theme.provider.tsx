@@ -91,58 +91,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     t: Theme,
     buttonRef: RefObject<HTMLButtonElement | null>
   ) => {
-    const supportsViewTransition =
-      typeof document !== "undefined" && "startViewTransition" in document
-    const prefersReducedMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-
-    if (!buttonRef.current || !supportsViewTransition || prefersReducedMotion) {
-      setTheme(t)
-      return
-    }
-
-    const { top, left, width, height } = buttonRef.current.getBoundingClientRect()
-    const x = left + width / 2
-    const y = top + height / 2
-    const right = window.innerWidth - left
-    const bottom = window.innerHeight - top
-    const maxRadius = Math.hypot(Math.max(left, right), Math.max(top, bottom))
-
-    const effective = t === "system" ? getSystemTheme() : t
-
-    const root = document.documentElement
-    root.style.setProperty("--vt-x", `${x}px`)
-    root.style.setProperty("--vt-y", `${y}px`)
-    root.style.setProperty("--vt-r", `${maxRadius}px`)
-    document.body.classList.add("theme-transitioning")
-
-    try {
-      const transition = (
-        document as Document & {
-          startViewTransition: (callback: () => void) => {
-            ready: Promise<void>
-            finished: Promise<void>
-          }
-        }
-      ).startViewTransition(() => {
-        flushSync(() => {
-          localStorage.setItem(STORAGE_KEY, t)
-          setResolved(effective)
-          applyTheme(effective)
-          setThemeState(t)
-        })
-      })
-
-      transition.finished.finally(() => {
-        document.body.classList.remove("theme-transitioning")
-      })
-
-      await transition.finished
-    } catch {
-      document.body.classList.remove("theme-transitioning")
-      setTheme(t)
-    }
+    // Use simple CSS transition instead of view transition
+    setTheme(t)
   }
 
   const value: ThemeContextValue = {
