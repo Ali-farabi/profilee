@@ -5,11 +5,6 @@ export const LINKS = {
   email: "kultaiali670@gmail.com",
 } as const
 
-export const CV_PATHS = {
-  ru: "",
-  en: "",
-} as const
-
 export const SKILLS = {
   frontend: [
     "HTML",

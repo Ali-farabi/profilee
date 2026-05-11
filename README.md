@@ -62,7 +62,3 @@ Open [http://localhost:3000](http://localhost:3000).
 npm run build
 npm start
 ```
-
-## Author
-
-**Dzhalil Kalimov** — [GitHub](https://github.com/Fujura) · [LinkedIn](https://www.linkedin.com/in/dzhalil-kalimov-41b5bb29b/) · [Telegram](https://t.me/fujura)
